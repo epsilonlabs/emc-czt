@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CZT Driver for Epsilon
+Bundle-SymbolicName: org.eclipse.epsilon.emc.czt.dt;singleton:=true
+Bundle-Version: 0.8.0
+Require-Bundle: org.eclipse.epsilon.common.dt,
+ org.eclipse.jface,
+ org.eclipse.emf,
+ org.eclipse.emf.ecore,
+ org.eclipse.epsilon.emc.czt
+Export-Package: org.eclipse.epsilon.emc.czt.dt

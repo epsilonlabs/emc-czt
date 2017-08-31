@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         id="z_model"
+         name="z_model"
+         point="org.eclipse.epsilon.common.dt.modelType">
+      <modelType
+            class="org.eclipse.epsilon.emc.z.ZModel"
+            dialog="org.eclipse.epsilon.emc.czt.dt.CZTModelConfigurationDialog"
+            icon="icons/ZModel.png"
+            label="Z Model"
+            type="ZModel">
+      </modelType>
+   </extension>
+
+</plugin>
