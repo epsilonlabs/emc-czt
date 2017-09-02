@@ -17,17 +17,17 @@ public class CZTModel extends EmfModel {
 	
 	public static void main(String[] args) throws Exception {
 		
-		EmfUtil.register(URI.createFileURI("/Users/dkolovos/git/emc-czt/org.eclipse.epsilon.emc.czt/z.ecore"), EPackage.Registry.INSTANCE);		
+		EmfUtil.register(URI.createFileURI("z.ecore"), EPackage.Registry.INSTANCE);		
 		
 		CZTModel model = new CZTModel();
 		model.setName("M");
 		model.setModelFile("/Users/dkolovos/git/emc-czt/org.eclipse.epsilon.emc.czt/samples/birthdaybook.zed");
 		model.setReadOnLoad(true);
-		model.setStoredOnDisposal(false);
+		model.setStoredOnDisposal(true);
 		model.load();
 		
 		EolModule module = new EolModule();
-		module.parse("ZName.all.selectOne(n|n.word='FindBirthday').word.println();");
+		module.parse("ZName.all.selectOne(n|n.word='FindBirthday').word = 'HPB';");
 		module.getContext().getModelRepository().addModel(model);
 		module.execute();
 		module.getContext().getModelRepository().dispose();
