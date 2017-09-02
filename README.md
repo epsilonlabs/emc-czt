@@ -6,7 +6,7 @@ Eclipse plugins that extend Epsilon's Model Connectivity (EMC) layer with suppor
 Example
 -----------
 The following EOL snippet demonstrates printing the names of all schemas in a Z model.
-```
+```javascript
 for (para in AxPara.all.select(para|para.box = Box#SchBox)) {
   para.schText.declList.decl.name.word.first().println();
 }
