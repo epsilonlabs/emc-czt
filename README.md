@@ -20,6 +20,7 @@ How to run
 	* org.eclipse.epsilon.emc.czt.dt
 * Run a nested Eclipse instance
 * In the new Eclipse instance import the org.eclipse.epsilon.emc.czt.examples project
+* Ensure that the default encoding in your workspace is UTF-8 (through Preferences->General->Workspace)
 * Try the examples by right-clicking and running the stored .launch configurations
 
 Tips
