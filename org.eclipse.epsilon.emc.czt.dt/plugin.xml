@@ -6,12 +6,20 @@
          name="z_model"
          point="org.eclipse.epsilon.common.dt.modelType">
       <modelType
-            class="org.eclipse.epsilon.emc.z.ZModel"
+            class="org.eclipse.epsilon.emc.czt.CZTModel"
             dialog="org.eclipse.epsilon.emc.czt.dt.CZTModelConfigurationDialog"
             icon="icons/ZModel.png"
-            label="Z Model"
+            label="Z Model (CZT LaTeX)"
+            stable="true"
             type="ZModel">
       </modelType>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eclipse.epsilon.emc.czt.CZTResourceFactory"
+            type="zed">
+      </parser>
    </extension>
 
 </plugin>

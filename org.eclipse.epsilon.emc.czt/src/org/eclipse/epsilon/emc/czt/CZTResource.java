@@ -1,11 +1,9 @@
 package org.eclipse.epsilon.emc.czt;
 
 import java.io.ByteArrayInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -16,7 +14,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLOptions;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLOptionsImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.epsilon.emc.emf.EmfUtil;
@@ -27,13 +24,12 @@ import net.sourceforge.czt.print.util.XmlString;
 import net.sourceforge.czt.session.CommandException;
 import net.sourceforge.czt.session.Dialect;
 import net.sourceforge.czt.session.Key;
+import net.sourceforge.czt.session.Markup;
 import net.sourceforge.czt.session.SectionManager;
 import net.sourceforge.czt.session.Source;
 import net.sourceforge.czt.session.StringSource;
 
 public class CZTResource extends XMLResourceImpl {
-	
-	protected SectionManager manager = new SectionManager(Dialect.Z);
 	
 	public static void main(String[] args) throws Exception {
 		
@@ -41,8 +37,8 @@ public class CZTResource extends XMLResourceImpl {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		//resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml", new GenericXMLResourceFactoryImpl());
 		//Resource resource = resourceSet.createResource(URI.createFileURI("/Users/dkolovos/git/emc-czt/org.eclipse.epsilon.emc.czt/birthdaybook.xml"));
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("tex", new CZTResourceFactory());
-		Resource resource = resourceSet.createResource(URI.createFileURI("/Users/dkolovos/git/emc-czt/org.eclipse.epsilon.emc.czt/birthdaybook.tex"));
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("zed", new CZTResourceFactory());
+		Resource resource = resourceSet.createResource(URI.createFileURI("/Users/dkolovos/git/emc-czt/org.eclipse.epsilon.emc.czt/samples/birthdaybook.zed"));
 		resource.load(null);
 		InMemoryEmfModel m = new InMemoryEmfModel(resource);
 		System.out.println(m.getAllOfKind("ZSect"));
@@ -64,8 +60,10 @@ public class CZTResource extends XMLResourceImpl {
 	
 	@Override
 	public void doLoad(InputStream inputStream, Map<?, ?> options) throws IOException {
-				
-		Source source = new StringSource(new Scanner(inputStream).useDelimiter("\\A").next());		
+		
+		SectionManager manager = new SectionManager(Dialect.Z);
+		Source source = new StringSource(new Scanner(inputStream).useDelimiter("\\A").next());
+		//source.setName(UUID.randomUUID().toString());
 		manager.put(new Key(source.getName(), Source.class), source);
 		
 		try {
@@ -79,10 +77,15 @@ public class CZTResource extends XMLResourceImpl {
 	
 	@Override
 	public void doSave(OutputStream outputStream, Map<?, ?> options) throws IOException {
+		
+		if (1>0) throw new UnsupportedOperationException();
+		
 		StringOutputStream stringOutputStream = new StringOutputStream();
 		super.doSave(stringOutputStream, options);
-		
-		Source source = new StringSource(stringOutputStream.toString());		
+		SectionManager manager = new SectionManager(Dialect.Z);
+		Source source = new StringSource(stringOutputStream.toString());
+		source.setMarkup(Markup.ZML);
+		//source.setName(UUID.randomUUID().toString());
 		manager.put(new Key(source.getName(), Source.class), source);
 		
 		try {

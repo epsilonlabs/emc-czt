@@ -8,6 +8,7 @@ import org.eclipse.epsilon.emc.emf.CachedResourceSet;
 import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.emc.emf.EmfUtil;
 import org.eclipse.epsilon.eol.EolModule;
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 
 public class CZTModel extends EmfModel {
 	
@@ -20,17 +21,16 @@ public class CZTModel extends EmfModel {
 		
 		CZTModel model = new CZTModel();
 		model.setName("M");
-		model.setModelFile("/Users/dkolovos/git/emc-czt/org.eclipse.epsilon.emc.czt/birthdaybook.tex");
-		model.setMetamodelUri("http://czt.sourceforge.net/zml");
+		model.setModelFile("/Users/dkolovos/git/emc-czt/org.eclipse.epsilon.emc.czt/samples/birthdaybook.zed");
 		model.setReadOnLoad(true);
-		model.setStoredOnDisposal(true);
+		model.setStoredOnDisposal(false);
 		model.load();
 		
 		EolModule module = new EolModule();
-		module.parse("ZName.all.first().word = 'BARB';");
+		module.parse("ZName.all.selectOne(n|n.word='FindBirthday').word.println();");
 		module.getContext().getModelRepository().addModel(model);
 		module.execute();
-		
+		module.getContext().getModelRepository().dispose();
 	}
 	
 	@Override
@@ -41,6 +41,12 @@ public class CZTModel extends EmfModel {
 				return resourceFactory.createResource(uri);
 			}
 		};
+	}
+	
+	@Override
+	protected void loadModel() throws EolModelLoadingException {
+		setMetamodelUri("http://czt.sourceforge.net/zml");
+		super.loadModel();
 	}
 	
 }
