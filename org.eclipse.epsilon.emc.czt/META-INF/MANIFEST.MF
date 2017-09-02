@@ -1,14 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Epsilon Z Model Support Plug-in
-Bundle-SymbolicName: org.eclipse.epsilon.emc.czt
+Bundle-SymbolicName: org.eclipse.epsilon.emc.czt;singleton:=true
 Bundle-Version: 0.8.0
 Require-Bundle: org.eclipse.epsilon.eol.engine,
  org.eclipse.emf,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.ecore.change,
- org.eclipse.epsilon.emc.emf
+ org.eclipse.epsilon.emc.emf,
+ org.eclipse.xsd
 Export-Package: org.eclipse.epsilon.emc.czt
 Bundle-ClassPath: lib/czt.jar,
  .
