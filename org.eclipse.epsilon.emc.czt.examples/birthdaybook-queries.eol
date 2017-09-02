@@ -1,1 +1,4 @@
-ZName.all.selectOne(n|n.word='FindBirthday').word.println();
+// Prints the names of all schemas in the spec
+for (para in AxPara.all.select(para|para.box = Box#SchBox)) {
+	para.schText.declList.decl.name.word.first().println();
+}

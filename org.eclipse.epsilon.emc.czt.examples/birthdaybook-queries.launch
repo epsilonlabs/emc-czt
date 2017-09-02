@@ -2,7 +2,7 @@
 <launchConfiguration type="org.epsilon.eol.eclipse.dt.launching.EolLaunchConfigurationDelegate">
 <booleanAttribute key="fine_grained_profiling" value="false"/>
 <listAttribute key="models">
-<listEntry value="aliases=&#10;modelFile=/org.eclipse.epsilon.emc.czt.examples/birthdaybook.zed&#10;name=&#10;cached=true&#10;type=ZModel&#10;storeOnDisposal=false&#10;readOnLoad=true"/>
+<listEntry value="aliases=&#10;modelFile=/org.eclipse.epsilon.emc.czt.examples/birthdaybook.zed&#10;name=M&#10;cached=true&#10;type=ZModel&#10;storeOnDisposal=false&#10;readOnLoad=true"/>
 </listAttribute>
 <listAttribute key="parameters"/>
 <booleanAttribute key="profile_model_loading" value="false"/>
